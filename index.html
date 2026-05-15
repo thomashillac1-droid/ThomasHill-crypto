@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoTrade - The World's Most Secure Trading Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cyan:#00e5ff;--purple:#a855f7;--pink:#ec4899;
+  --green:#22c55e;--red:#ef4444;
+  --dark:#080810;--dark2:#0d0d1a;--dark3:#12121f;
+  --text:#e2e8f0;--muted:#64748b;
+}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:0 40px;height:68px;background:rgba(8,8,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.25rem;font-weight:800;color:#fff;text-decoration:none;margin-right:40px;}
+.logo-box{width:32px;height:32px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.nav-links{display:flex;gap:28px;list-style:none;flex:1;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s;display:flex;align-items:center;gap:6px;}
+.nav-links a:hover{color:#fff;}
+.badge{font-size:0.58rem;font-weight:700;background:#f59e0b;color:#000;padding:2px 5px;border-radius:3px;}
+.nav-right{display:flex;gap:10px;align-items:center;}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;text-decoration:none;outline:none;}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.28);}
+.btn-profile{padding:10px 24px;border-radius:999px;border:none;background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s,transform 0.2s;}
+.btn-profile:hover{opacity:0.9;transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center;padding:120px 24px 80px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 90% 70% at 15% 50%,rgba(168,85,247,0.3) 0%,transparent 55%),
+             radial-gradient(ellipse 70% 60% at 85% 35%,rgba(0,229,255,0.22) 0%,transparent 55%),
+             radial-gradient(ellipse 60% 50% at 50% 90%,rgba(236,72,153,0.18) 0%,transparent 55%),
+             var(--dark);}
+.hero-bg::before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:55px 55px;}
+.gline{position:absolute;pointer-events:none;}
+.g1{top:18%;left:3%;width:50%;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.9),rgba(0,229,255,0.5),transparent);transform:rotate(22deg);filter:blur(0.5px);}
+.g2{top:35%;right:2%;width:45%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.7),rgba(168,85,247,0.4),transparent);transform:rotate(-18deg);filter:blur(0.5px);}
+.g3{top:60%;left:8%;width:38%;height:1px;background:linear-gradient(90deg,transparent,rgba(236,72,153,0.6),transparent);transform:rotate(12deg);filter:blur(1px);}
+.g4{top:22%;right:15%;width:25%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.4),transparent);transform:rotate(-35deg);filter:blur(1px);}
+
+.hero-content{position:relative;z-index:1;max-width:920px;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;border:1px solid rgba(0,229,255,0.3);background:rgba(0,229,255,0.07);font-size:0.78rem;color:var(--cyan);font-weight:500;margin-bottom:30px;letter-spacing:0.5px;}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+h1{font-size:clamp(3rem,7.5vw,6rem);font-weight:900;line-height:1.05;color:#fff;margin-bottom:24px;letter-spacing:-3px;}
+h1 .c{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.75;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+.btn-cta{display:inline-flex;align-items:center;justify-content:center;padding:15px 40px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#000;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;text-decoration:none;}
+.btn-cta:hover{transform:scale(1.04);box-shadow:0 0 35px rgba(0,229,255,0.35);}
+.btn-cta2{display:inline-flex;align-items:center;justify-content:center;padding:15px 40px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.05);color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;text-decoration:none;}
+.btn-cta2:hover{border-color:var(--purple);background:rgba(168,85,247,0.1);}
+.hero-stats{display:flex;gap:52px;justify-content:center;flex-wrap:wrap;}
+.stat-num{font-size:1.9rem;font-weight:800;color:#fff;}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:4px;}
+
+/* TICKER */
+.ticker{background:var(--dark2);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:14px 0;overflow:hidden;}
+.ticker-track{display:flex;gap:56px;animation:scroll 30s linear infinite;width:max-content;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.t-item{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:0.88rem;}
+.t-icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;}
+.t-name{font-weight:600;color:#fff;}
+.t-price{color:var(--muted);}
+.up{color:var(--green);}
+.down{color:var(--red);}
+
+/* FEATURES */
+.features{padding:90px 48px;max-width:1200px;margin:0 auto;}
+.sec-tag{font-size:0.75rem;font-weight:600;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;}
+.sec-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-1px;}
+.sec-sub{font-size:0.95rem;color:var(--muted);max-width:460px;line-height:1.75;margin-bottom:56px;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
+.card{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;transition:all 0.3s;}
+.card:hover{border-color:rgba(0,229,255,0.25);transform:translateY(-5px);}
+.card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px;}
+.card h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;}
+.card p{font-size:0.85rem;color:var(--muted);line-height:1.65;}
+
+/* MARKET */
+.market-wrap{background:var(--dark2);padding:80px 0;}
+.market-inner{max-width:1200px;margin:0 auto;padding:0 48px;}
+table{width:100%;border-collapse:collapse;margin-top:40px;}
+thead th{font-size:0.75rem;font-weight:600;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);text-transform:uppercase;letter-spacing:0.5px;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.2s;cursor:pointer;}
+tbody tr:hover{background:rgba(255,255,255,0.03);}
+tbody td{padding:16px;font-size:0.9rem;}
+.coin-cell{display:flex;align-items:center;gap:12px;}
+.c-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;}
+.c-name{font-weight:600;color:#fff;}
+.c-sym{font-size:0.78rem;color:var(--muted);}
+.change-pill{display:inline-flex;align-items:center;padding:4px 10px;border-radius:6px;font-size:0.8rem;font-weight:600;}
+.change-pill.up{background:rgba(34,197,94,0.12);color:var(--green);}
+.change-pill.down{background:rgba(239,68,68,0.12);color:var(--red);}
+.trade-btn{padding:7px 18px;border-radius:7px;border:1px solid rgba(0,229,255,0.3);background:transparent;color:var(--cyan);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.trade-btn:hover{background:rgba(0,229,255,0.1);}
+
+/* CTA BANNER */
+.cta-banner{padding:90px 48px;text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 50% 50%,rgba(168,85,247,0.2) 0%,transparent 70%);}
+.cta-banner h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-2px;position:relative;}
+.cta-banner p{font-size:1rem;color:var(--muted);margin-bottom:36px;position:relative;}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,0.06);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-links a:hover{color:#fff;}
+.footer-copy{font-size:0.82rem;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-box">₿</div>
+    CryptoMarket
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">P2P <span class="badge">NEW</span></a></li>
+    <li><a href="#">Trading</a></li>
+    <li><a href="#">Swap</a></li>
+    <li><a href="#">Invest</a></li>
+    <li><a href="#">Wallet</a></li>
+    <li><a href="#">Support</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="signin.html" class="btn-ghost">Log In</a>
+    <button class="btn-profile">Profile</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="gline g1"></div>
+    <div class="gline g2"></div>
+    <div class="gline g3"></div>
+    <div class="gline g4"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      Now live — trade 500+ crypto assets
+    </div>
+    <h1>The World's Most Secure<br><span class="c">Trading Platform</span></h1>
+    <p class="hero-sub">Join the fastest growing global cryptocurrency exchange with the lowest fees around. Start trading in minutes.</p>
+    <div class="hero-btns">
+      <a href="signin.html#register" class="btn-cta">Get Started Free</a>
+      <a href="#" class="btn-cta2">View Markets</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">$2.4B+</div><div class="stat-label">Daily Volume</div></div>
+      <div class="stat"><div class="stat-num">5M+</div><div class="stat-label">Active Users</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Crypto Assets</div></div>
+      <div class="stat"><div class="stat-num">0.1%</div><div class="stat-label">Trading Fee</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="sec-tag">Why Choose Us</div>
+  <div class="sec-title">Built for traders,<br>trusted by millions</div>
+  <p class="sec-sub">Everything you need to trade crypto professionally — all in one place.</p>
+  <div class="grid3">
+    <div class="card">
+      <div class="card-icon" style="background:rgba(0,229,255,0.1);">🔒</div>
+      <h3>Bank-Grade Security</h3>
+      <p>Multi-layer encryption, cold storage, and 2FA protection keep your assets safe 24/7.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(168,85,247,0.1);">⚡</div>
+      <h3>Lightning Fast Trades</h3>
+      <p>Execute trades in milliseconds with our high-performance matching engine built for speed.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(236,72,153,0.1);">📊</div>
+      <h3>Advanced Charts</h3>
+      <p>Professional TradingView charts with 100+ indicators and real-time market data.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(34,197,94,0.1);">💸</div>
+      <h3>Lowest Fees</h3>
+      <p>Enjoy 0.1% trading fees — one of the lowest in the industry. Save more, earn more.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(245,158,11,0.1);">🌍</div>
+      <h3>Global P2P Network</h3>
+      <p>Trade peer-to-peer with users worldwide across 150+ countries and 50+ payment methods.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(0,229,255,0.1);">📱</div>
+      <h3>Mobile App</h3>
+      <p>Trade on the go with our iOS and Android apps. Full functionality in your pocket.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET TABLE -->
+<div class="market-wrap">
+  <div class="market-inner">
+    <div class="sec-tag">Live Markets</div>
+    <div class="sec-title">Top cryptocurrencies</div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Asset</th>
+          <th>Price</th>
+          <th>24h Change</th>
+          <th>Market Cap</th>
+          <th>Volume</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted)">1</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(247,147,26,0.15);color:#f7931a;">₿</div><div><div class="c-name">Bitcoin</div><div class="c-sym">BTC</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$80,672.27</td>
+          <td><span class="change-pill up">▲ 774.74%</span></td>
+          <td style="color:var(--muted);">$1.58T</td>
+          <td style="color:var(--muted);">$42.3B</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">2</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(98,126,234,0.15);color:#627eea;">Ξ</div><div><div class="c-name">Ethereum</div><div class="c-sym">ETH</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$3,241.80</td>
+          <td><span class="change-pill up">▲ 2.34%</span></td>
+          <td style="color:var(--muted);">$389.4B</td>
+          <td style="color:var(--muted);">$18.7B</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">3</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(88,196,220,0.15);color:#58c4dc;">◎</div><div><div class="c-name">Solana</div><div class="c-sym">SOL</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$142.55</td>
+          <td><span class="change-pill down">▼ 1.12%</span></td>
+          <td style="color:var(--muted);">$65.2B</td>
+          <td style="color:var(--muted);">$3.9B</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">4</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(243,186,47,0.15);color:#f3ba2f;">B</div><div><div class="c-name">BNB</div><div class="c-sym">BNB</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$688.68</td>
+          <td><span class="change-pill up">▲ 13.51%</span></td>
+          <td style="color:var(--muted);">$99.8B</td>
+          <td style="color:var(--muted);">$2.1B</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">5</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(189,119,55,0.15);color:#bd7737;">Ł</div><div><div class="c-name">Litecoin</div><div class="c-sym">LTC</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$58.19</td>
+          <td><span class="change-pill up">▲ 1.12%</span></td>
+          <td style="color:var(--muted);">$4.3B</td>
+          <td style="color:var(--muted);">$412M</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted)">6</td>
+          <td><div class="coin-cell"><div class="c-icon" style="background:rgba(239,68,68,0.15);color:#ef4444;">B</div><div><div class="c-name">Bitcoin Cash</div><div class="c-sym">BCH</div></div></div></td>
+          <td style="font-weight:600;color:#fff;">$431.80</td>
+          <td><span class="change-pill down">▼ 2.60%</span></td>
+          <td style="color:var(--muted);">$8.5B</td>
+          <td style="color:var(--muted);">$521M</td>
+          <td><button class="trade-btn">Trade</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to start trading?</h2>
+  <p>Join 5 million+ traders on the world's most secure platform.</p>
+  <button class="btn-cta" style="font-family:'Inter',sans-serif;">Create Free Account →</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="margin-right:0;">
+    <div class="logo-box">₿</div>
+    CryptoMarket
+  </a>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Support</a>
+    <a href="#">API</a>
+    <a href="#">Blog</a>
+  </div>
+  <div class="footer-copy">© 2026 CryptoTrade. All rights reserved.</div>
+</footer>
+
+<script>
+const coins = [
+  {sym:'BTC',name:'Bitcoin',price:'$80,672',change:'+774.74%',up:true,color:'#f7931a'},
+  {sym:'ETH',name:'Ethereum',price:'$3,241',change:'+2.34%',up:true,color:'#627eea'},
+  {sym:'SOL',name:'Solana',price:'$142.55',change:'-1.12%',up:false,color:'#58c4dc'},
+  {sym:'BNB',name:'BNB',price:'$688.68',change:'+13.51%',up:true,color:'#f3ba2f'},
+  {sym:'LTC',name:'Litecoin',price:'$58.19',change:'+1.12%',up:true,color:'#bd7737'},
+  {sym:'BCH',name:'Bitcoin Cash',price:'$431.80',change:'-2.60%',up:false,color:'#ef4444'},
+  {sym:'XRP',name:'Ripple',price:'$0.512',change:'+4.21%',up:true,color:'#00aae4'},
+  {sym:'ADA',name:'Cardano',price:'$0.381',change:'-0.88%',up:false,color:'#0033ad'},
+];
+
+function buildTicker(arr) {
+  return arr.map(c => `
+    <div class="t-item">
+      <div class="t-icon" style="background:rgba(255,255,255,0.07);color:${c.color};">${c.sym[0]}</div>
+      <span class="t-name">${c.sym}</span>
+      <span class="t-price">${c.price}</span>
+      <span class="${c.up?'up':'down'}">${c.change}</span>
+    </div>
+  `).join('');
+}
+
+const track = document.getElementById('ticker');
+const html = buildTicker(coins);
+track.innerHTML = html + html;
+</script>
+</body>
+</html>
